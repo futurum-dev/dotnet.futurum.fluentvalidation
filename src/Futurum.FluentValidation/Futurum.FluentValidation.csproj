@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageId>Futurum.FluentValidation</PackageId>
+        <PackageIcon>dotnet-logo.png</PackageIcon>
+        <Description>Small dotnet library, that allows FluentValidation to work with Futurum.Core.</Description>
+        <PackageProjectUrl>https://www.futurum.dev/projects/dotnet-futurum.html</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/futurum-dev/dotnet.futurum.fluentvalidation</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\assets\dotnet-logo.png" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\net6.0\Futurum.FluentValidation.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>bin\Release\net6.0\Futurum.FluentValidation.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="10.3.6" />
+        <PackageReference Include="Futurum.Core" Version="1.0.0" />
+    </ItemGroup>
+    
+</Project>
