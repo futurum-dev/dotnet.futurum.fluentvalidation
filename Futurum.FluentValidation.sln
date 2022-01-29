@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{66BA6467
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D2AC73D6-5E0C-4047-960C-196328BA6F08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Futurum.FluentValidation.Tests", "test\Futurum.FluentValidation.Tests\Futurum.FluentValidation.Tests.csproj", "{91B8054A-41B9-466E-96E6-31990CEEEDBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,5 +29,12 @@ Global
 		{632B0A7B-11C9-4669-B98A-820F3DD0C6E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{632B0A7B-11C9-4669-B98A-820F3DD0C6E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{632B0A7B-11C9-4669-B98A-820F3DD0C6E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91B8054A-41B9-466E-96E6-31990CEEEDBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91B8054A-41B9-466E-96E6-31990CEEEDBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91B8054A-41B9-466E-96E6-31990CEEEDBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91B8054A-41B9-466E-96E6-31990CEEEDBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{91B8054A-41B9-466E-96E6-31990CEEEDBD} = {D2AC73D6-5E0C-4047-960C-196328BA6F08}
 	EndGlobalSection
 EndGlobal
