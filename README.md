@@ -1,7 +1,8 @@
-# dotnet.futurum.fluentvalidation
+# Futurum.FluentValidation
 
-![CI](https://github.com/futurum-dev/dotnet.futurum.fluentvalidation/workflows/CI/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/futurum-dev/dotnet.futurum.fluentvalidation/badge.svg?branch=main)](https://coveralls.io/github/futurum-dev/dotnet.futurum.fluentvalidation?branch=main)
-[![NuGet version](https://img.shields.io/nuget/v/futurum.fluentvalidation.svg?style=flat&label=nuget%3A%20futurum.fluentvalidation)](https://www.nuget.org/packages/futurum.fluentvalidation)
+![license](https://img.shields.io/github/license/futurum-dev/dotnet.futurum.fluentvalidation?style=for-the-badge)
+![CI](https://img.shields.io/github/workflow/status/futurum-dev/dotnet.futurum.fluentvalidation/CI/main?style=for-the-badge)
+[![Coverage Status](https://img.shields.io/coveralls/github/futurum-dev/dotnet.futurum.fluentvalidation?style=for-the-badge)](https://coveralls.io/github/futurum-dev/dotnet.futurum.fluentvalidation?branch=main)
+[![NuGet version](https://img.shields.io/nuget/v/futurum.fluentvalidation?style=for-the-badge)](https://www.nuget.org/packages/futurum.fluentvalidation)
 
-Small dotnet library, that allows FluentValidation to work with Futurum.Core.
+A dotnet library, that allows FluentValidation to work with Futurum.Core.
