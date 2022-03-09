@@ -17,7 +17,7 @@ public class FluentValidationResultErrorTests
 
             var validationResult = new Validator().Validate(value);
 
-            var resultError = new FluentValidationResultError(validationResult);
+            var resultError = validationResult.ToResultError();
 
             var resultErrorStructure = resultError.GetErrorStructure();
             resultErrorStructure.Message.Should().Be("Validation failure");
@@ -31,7 +31,7 @@ public class FluentValidationResultErrorTests
 
             var validationResult = new Validator().Validate(value);
 
-            var resultError = new FluentValidationResultError(validationResult);
+            var resultError = validationResult.ToResultError();
 
             var resultErrorStructure = resultError.GetErrorStructure();
             resultErrorStructure.Message.Should().Be("Validation failure");
@@ -46,7 +46,7 @@ public class FluentValidationResultErrorTests
 
             var validationResult = new Validator().Validate(value);
 
-            var resultError = new FluentValidationResultError(validationResult);
+            var resultError = validationResult.ToResultError();
 
             var resultErrorStructure = resultError.GetErrorStructure();
             resultErrorStructure.Message.Should().Be("Validation failure");
@@ -61,7 +61,7 @@ public class FluentValidationResultErrorTests
 
             var validationResult = new Validator().Validate(value);
 
-            var resultError = new FluentValidationResultError(validationResult);
+            var resultError = validationResult.ToResultError();
 
             var resultErrorStructure = resultError.GetErrorStructure();
             resultErrorStructure.Message.Should().Be("Validation failure");

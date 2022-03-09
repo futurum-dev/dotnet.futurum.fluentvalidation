@@ -10,25 +10,25 @@ namespace Futurum.FluentValidation;
 /// </summary>
 public class FluentValidationResultError : IResultErrorNonComposite
 {
-    private readonly ValidationResult _validationResult;
-
     internal FluentValidationResultError(ValidationResult validationResult)
     {
-        _validationResult = validationResult;
+        ValidationResult = validationResult;
     }
+
+    public ValidationResult ValidationResult { get; }
 
     /// <inheritdoc />
     public string GetErrorString() =>
-        _validationResult.Errors
-                         .Select(TransformValidationFailureToErrorMessage)
-                         .StringJoin(",");
+        ValidationResult.Errors
+                        .Select(TransformValidationFailureToErrorMessage)
+                        .StringJoin(",");
 
     /// <inheritdoc />
     public ResultErrorStructure GetErrorStructure()
     {
-        var children = _validationResult.Errors
-                                        .Select(TransformValidationFailureToErrorMessage)
-                                        .Select(ResultErrorStructureExtensions.ToResultErrorStructure);
+        var children = ValidationResult.Errors
+                                       .Select(TransformValidationFailureToErrorMessage)
+                                       .Select(ResultErrorStructureExtensions.ToResultErrorStructure);
 
         return new ResultErrorStructure("Validation failure", children);
     }
