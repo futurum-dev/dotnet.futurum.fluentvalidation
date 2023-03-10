@@ -8,6 +8,69 @@ namespace Futurum.FluentValidation.Tests;
 
 public class FluentValidationResultErrorTests
 {
+    public class GetErrorStructureSafe
+    {
+        [Fact]
+        public void success()
+        {
+            var value = new ObjectToValidate(Guid.NewGuid().ToString(), 33);
+
+            var validationResult = new Validator().Validate(value);
+
+            var resultError = validationResult.ToResultError();
+
+            var resultErrorStructure = resultError.GetErrorStructureSafe();
+            resultErrorStructure.Message.Should().Be("Validation failure");
+            resultErrorStructure.Children.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void failure_name()
+        {
+            var value = new ObjectToValidate(null, 33);
+
+            var validationResult = new Validator().Validate(value);
+
+            var resultError = validationResult.ToResultError();
+
+            var resultErrorStructure = resultError.GetErrorStructureSafe();
+            resultErrorStructure.Message.Should().Be("Validation failure");
+            resultErrorStructure.Children.Count().Should().Be(1);
+            resultErrorStructure.Children.Single().Message.Should().Be("Validation failure for 'Name' with error : 'Name must not be null'");
+        }
+
+        [Fact]
+        public void failure_age()
+        {
+            var value = new ObjectToValidate(Guid.NewGuid().ToString(), 2);
+
+            var validationResult = new Validator().Validate(value);
+
+            var resultError = validationResult.ToResultError();
+
+            var resultErrorStructure = resultError.GetErrorStructureSafe();
+            resultErrorStructure.Message.Should().Be("Validation failure");
+            resultErrorStructure.Children.Count().Should().Be(1);
+            resultErrorStructure.Children.Single().Message.Should().Be("Validation failure for 'Age' with error : 'Age must be at least 18'");
+        }
+
+        [Fact]
+        public void failure_name_and_age()
+        {
+            var value = new ObjectToValidate(null, 2);
+
+            var validationResult = new Validator().Validate(value);
+
+            var resultError = validationResult.ToResultError();
+
+            var resultErrorStructure = resultError.GetErrorStructureSafe();
+            resultErrorStructure.Message.Should().Be("Validation failure");
+            resultErrorStructure.Children.Count().Should().Be(2);
+            resultErrorStructure.Children.Take(1).Single().Message.Should().Be("Validation failure for 'Name' with error : 'Name must not be null'");
+            resultErrorStructure.Children.Skip(1).Single().Message.Should().Be("Validation failure for 'Age' with error : 'Age must be at least 18'");
+        }
+    }
+    
     public class GetErrorStructure
     {
         [Fact]
@@ -68,6 +131,61 @@ public class FluentValidationResultErrorTests
             resultErrorStructure.Children.Count().Should().Be(2);
             resultErrorStructure.Children.Take(1).Single().Message.Should().Be("Validation failure for 'Name' with error : 'Name must not be null'");
             resultErrorStructure.Children.Skip(1).Single().Message.Should().Be("Validation failure for 'Age' with error : 'Age must be at least 18'");
+        }
+    }
+
+    public class GetErrorStringSafe
+    {
+        [Fact]
+        public void success()
+        {
+            var value = new ObjectToValidate(Guid.NewGuid().ToString(), 33);
+
+            var validationResult = new Validator().Validate(value);
+
+            var resultError = new FluentValidationResultError(validationResult);
+
+            resultError.GetErrorStringSafe().Should().BeEmpty();
+        }
+
+        [Fact]
+        public void failure_name()
+        {
+            var value = new ObjectToValidate(null, 33);
+
+            var validationResult = new Validator().Validate(value);
+
+            var resultError = new FluentValidationResultError(validationResult);
+
+            var errorString = resultError.GetErrorStringSafe();
+            errorString.Should().Be("Validation failure for 'Name' with error : 'Name must not be null'");
+        }
+
+        [Fact]
+        public void failure_age()
+        {
+            var value = new ObjectToValidate(Guid.NewGuid().ToString(), 2);
+
+            var validationResult = new Validator().Validate(value);
+
+            var resultError = new FluentValidationResultError(validationResult);
+
+            var errorString = resultError.GetErrorStringSafe();
+            errorString.Should().Be("Validation failure for 'Age' with error : 'Age must be at least 18'");
+        }
+
+        [Fact]
+        public void failure_name_and_age()
+        {
+            var value = new ObjectToValidate(null, 2);
+
+            var validationResult = new Validator().Validate(value);
+
+            var resultError = new FluentValidationResultError(validationResult);
+
+            var errorString = resultError.GetErrorStringSafe();
+            errorString.Should().Be("Validation failure for 'Name' with error : 'Name must not be null'," +
+                                    "Validation failure for 'Age' with error : 'Age must be at least 18'");
         }
     }
 
