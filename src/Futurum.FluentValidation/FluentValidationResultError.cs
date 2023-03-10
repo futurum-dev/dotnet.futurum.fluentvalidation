@@ -18,13 +18,17 @@ public class FluentValidationResultError : IResultErrorNonComposite
     public ValidationResult ValidationResult { get; }
 
     /// <inheritdoc />
-    public string GetErrorString() =>
+    public string GetErrorStringSafe() =>
         ValidationResult.Errors
                         .Select(TransformValidationFailureToErrorMessage)
                         .StringJoin(",");
 
     /// <inheritdoc />
-    public ResultErrorStructure GetErrorStructure()
+    public string GetErrorString() =>
+        GetErrorStringSafe();
+
+    /// <inheritdoc />
+    public ResultErrorStructure GetErrorStructureSafe()
     {
         var children = ValidationResult.Errors
                                        .Select(TransformValidationFailureToErrorMessage)
@@ -32,6 +36,10 @@ public class FluentValidationResultError : IResultErrorNonComposite
 
         return new ResultErrorStructure("Validation failure", children);
     }
+
+    /// <inheritdoc />
+    public ResultErrorStructure GetErrorStructure() =>
+        GetErrorStructureSafe();
 
     private static string TransformValidationFailureToErrorMessage(ValidationFailure validationFailure) =>
         $"Validation failure for '{validationFailure.PropertyName}' with error : '{validationFailure.ErrorMessage}'";
